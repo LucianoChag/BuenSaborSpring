@@ -15,5 +15,14 @@ import java.util.Set;
 @Entity
 @ToString
 @Builder
-public class Empresa {
+public class Empresa extends Base{
+    private String nombre;
+    private String razonSocial;
+    private Integer cuit;
+
+    @OneToMany
+    @JoinColumn(name = "empresa_id")
+    //El BUILDER.DEFAULT es para que BUILDER NO sobreescriba la inicializacion de la lista.
+    @Builder.Default
+    private Set<Sucursal> sucursales = new HashSet<>();
 }
