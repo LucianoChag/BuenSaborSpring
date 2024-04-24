@@ -8,6 +8,7 @@ public class BuenSaborSpringApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BuenSaborSpringApplication.class, args);
+		System.out.println("Funciona");
 	}
 
 }
