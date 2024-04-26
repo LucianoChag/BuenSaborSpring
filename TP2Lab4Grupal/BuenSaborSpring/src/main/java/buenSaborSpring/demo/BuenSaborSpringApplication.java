@@ -99,14 +99,14 @@ public class BuenSaborSpringApplication {
 			Empresa empresaJX = Empresa.builder().nombre("Juan X y sus amigos").cuit(93949596).razonSocial("Venta de Comida Rapida").build();
 			Sucursal sucursalRosario = Sucursal.builder().nombre("En Rosario").horarioApertura(LocalTime.of(17,0)).horarioCierre(LocalTime.of(23,0)).build();
 			Sucursal sucursalDorrego = Sucursal.builder().nombre("En Dorrego").horarioApertura(LocalTime.of(16,0)).horarioCierre(LocalTime.of(23,30)).build();
-			Domicilio domicilioViamonte = Domicilio.builder().codigoPostal(5509).calle("Viamonte").numero(500).piso(2).nDpto(23).localidad(loc1).build();
+			Domicilio domicilioRosario = Domicilio.builder().codigoPostal(4550).calle("Calle de Rosario").numero(654).piso(3).nDpto(2).localidad(loc1).build();
 			Domicilio domicilioMoldes = Domicilio.builder().codigoPostal(5521).calle("Moldes").numero(789).localidad(loc2).build();
 
-			sucursalRosario.setDomicilio(domicilioViamonte);
+			sucursalRosario.setDomicilio(domicilioRosario);
 			sucursalDorrego.setDomicilio(domicilioMoldes);
 			empresaJX.getSucursales().add(sucursalRosario);
 			empresaJX.getSucursales().add(sucursalDorrego);
-			domicilioRepository.save(domicilioViamonte);
+			domicilioRepository.save(domicilioRosario);
 			domicilioRepository.save(domicilioMoldes);
 			sucursalRepository.save(sucursalRosario);
 			sucursalRepository.save(sucursalDorrego);
@@ -123,39 +123,36 @@ public class BuenSaborSpringApplication {
 			unidadMedidaRepository.save(umPorciones);
 
 			// Crear Categorías de productos y subCategorías de los mismos
-			Categoria cBebidas = Categoria.builder().denominacion("Bebidas").build();
-			categoriaRepository.save(cBebidas);
-			Categoria cGaseosas = Categoria.builder().denominacion("Gaseosas").build();
-			categoriaRepository.save(cGaseosas);
-			Categoria cTragos = Categoria.builder().denominacion("Tragos").build();
-			categoriaRepository.save(cTragos);
+			Categoria cHamburguesas = Categoria.builder().denominacion("Hamburguesas").build();
+			categoriaRepository.save(cHamburguesas);
+			Categoria cCarne = Categoria.builder().denominacion("Carne").build();
+			categoriaRepository.save(cCarne);
 			Categoria cPizzas = Categoria.builder().denominacion("Pizzas").build();
 			categoriaRepository.save(cPizzas);
-			cBebidas.getSubCategorias().add(cGaseosas);
-			cBebidas.getSubCategorias().add(cTragos);
-			categoriaRepository.save(cBebidas);
+			cHamburguesas.getSubCategorias().add(cCarne);
+			categoriaRepository.save(cHamburguesas);
 
 			// Crear Insumos , coca cola , harina , etc
-			ArticuloInsumo cocaCola = ArticuloInsumo.builder().denominacion("Coca cola").unidadMedida(umLitros).esParaElaborar(false).stockActual(5).stockMaximo(50).precioCompra(50.0).precioVenta(70.0).build();
-			ArticuloInsumo harina = ArticuloInsumo.builder().denominacion("Harina").unidadMedida(umGramos).esParaElaborar(true).stockActual(4).stockMaximo(40).precioCompra(40.0).precioVenta(60.5).build();
-			ArticuloInsumo queso = ArticuloInsumo.builder().denominacion("Queso").unidadMedida(umGramos).esParaElaborar(true).stockActual(20).stockMaximo(50).precioCompra(23.6).precioVenta(66.6).build();
-			ArticuloInsumo tomate = ArticuloInsumo.builder().denominacion("Tomate").unidadMedida(umCantidad).esParaElaborar(true).stockActual(20).stockMaximo(50).precioCompra(23.6).precioVenta(66.6).build();
+			ArticuloInsumo carneMolida = ArticuloInsumo.builder().denominacion("Carne Molida").unidadMedida(umLitros).esParaElaborar(false).stockActual(5).stockMaximo(50).precioCompra(300.0).precioVenta(500.00).build();
+			ArticuloInsumo harina = ArticuloInsumo.builder().denominacion("Harina").unidadMedida(umGramos).esParaElaborar(true).stockActual(4).stockMaximo(40).precioCompra(400.0).precioVenta(600.5).build();
+			ArticuloInsumo queso = ArticuloInsumo.builder().denominacion("Queso").unidadMedida(umGramos).esParaElaborar(true).stockActual(20).stockMaximo(50).precioCompra(230.6).precioVenta(660.6).build();
+			ArticuloInsumo tomate = ArticuloInsumo.builder().denominacion("Tomate").unidadMedida(umCantidad).esParaElaborar(true).stockActual(20).stockMaximo(50).precioCompra(230.6).precioVenta(606.6).build();
 
 			// crear fotos para cada insumo
-			Imagen imagenCoca = Imagen.builder().url("https://m.media-amazon.com/images/I/51v8nyxSOYL._SL1500_.jpg").build();
+			Imagen imagenCarneMolida = Imagen.builder().url("https://http2.mlstatic.com/D_NQ_NP_846751-MLA50878406087_072022-O.webp").build();
 			Imagen imagenHarina = Imagen.builder().url("https://mandolina.co/wp-content/uploads/2023/03/648366622-1024x683.jpg").build();
 			Imagen imagenQueso = Imagen.builder().url("https://superdepaso.com.ar/wp-content/uploads/2021/06/SANTAROSA-PATEGRAS-04.jpg").build();
 			Imagen imagenTomate = Imagen.builder().url("https://thefoodtech.com/wp-content/uploads/2020/06/Componentes-de-calidad-en-el-tomate-828x548.jpg").build();
-			imagenRepository.save(imagenCoca);
+			imagenRepository.save(imagenCarneMolida);
 			imagenRepository.save(imagenHarina);
 			imagenRepository.save(imagenQueso);
 			imagenRepository.save(imagenTomate);
 
-			cocaCola.getImagenes().add(imagenCoca);
+			carneMolida.getImagenes().add(imagenCarneMolida);
 			harina.getImagenes().add(imagenHarina);
 			queso.getImagenes().add(imagenQueso);
 			tomate.getImagenes().add(imagenTomate);
-			articuloInsumoRepository.save(cocaCola);
+			articuloInsumoRepository.save(carneMolida);
 			articuloInsumoRepository.save(harina);
 			articuloInsumoRepository.save(queso);
 			articuloInsumoRepository.save(tomate);
@@ -191,10 +188,10 @@ public class BuenSaborSpringApplication {
 			articuloManufacturadoRepository.save(pizzaNapolitana);
 
 			// Establecer relaciones de las categorias
-			cGaseosas.getArticulos().add(cocaCola);
+			cCarne.getArticulos().add(carneMolida);
 			cPizzas.getArticulos().add(pizzaMuzarella);
 			cPizzas.getArticulos().add(pizzaNapolitana);
-			categoriaRepository.save(cGaseosas);
+			categoriaRepository.save(cCarne);
 			categoriaRepository.save(cPizzas);
 
 			// Crear promocion para sucursal - Dia de los enamorados
@@ -208,16 +205,16 @@ public class BuenSaborSpringApplication {
 					.precioPromocional(100.0)
 					.tipoPromocion(TipoPromocion.promocion)
 					.build();
-			promocionDiaEnamorados.getArticulos().add(cocaCola);
+			promocionDiaEnamorados.getArticulos().add(carneMolida);
 			promocionDiaEnamorados.getArticulos().add(pizzaNapolitana);
 			promocionRepository.save(promocionDiaEnamorados);
 
 			//Agregar categorias y promociones a sucursales
-			sucursalRosario.getCategorias().add(cBebidas);
+			sucursalRosario.getCategorias().add(cHamburguesas);
 			sucursalRosario.getCategorias().add(cPizzas);
 			sucursalRosario.getPromociones().add(promocionDiaEnamorados);
 
-			sucursalDorrego.getCategorias().add(cBebidas);
+			sucursalDorrego.getCategorias().add(cHamburguesas);
 			sucursalDorrego.getCategorias().add(cPizzas);
 
 			sucursalRepository.save(sucursalRosario);
@@ -226,16 +223,16 @@ public class BuenSaborSpringApplication {
 			//Crea un cliente y un usuario
 			Imagen imagenCliente = Imagen.builder().url("https://hips.hearstapps.com/hmg-prod/images/la-la-land-final-1638446140.jpg").build();
 			imagenRepository.save(imagenCliente);
-			Usuario usuario = Usuario.builder().username("sebastian").auth0Id("9565a49d-ecc1-4f4e-adea-6cdcb7edc4a3").build();
+			Usuario usuario = Usuario.builder().username("Juancito").auth0Id("9565a49d-ecc1-4f4e-adea-6cdcb7edc4a3").build();
 			usuarioRepository.save(usuario);
 			Cliente cliente = Cliente.builder().usuario(usuario)
 					.imagen(imagenCliente)
-					.email("correoFalso@gmail.com")
-					.nombre("Sebastian")
-					.apellido("Wilder")
-					.telefono("2615920825")
+					.email("juancito@gmail.com")
+					.nombre("Juancito")
+					.apellido("Equisde")
+					.telefono("2615926525")
 					.build();
-			cliente.getDomicilios().add(domicilioViamonte);
+			cliente.getDomicilios().add(domicilioRosario);
 			clienteRepository.save(cliente);
 
 			//Crea un pedido para el cliente
@@ -247,10 +244,10 @@ public class BuenSaborSpringApplication {
 					.formaPago(FormaPago.MercadoPago)
 					.tipoEnvio(TipoEnvio.Delivery)
 					.sucursal(sucursalRosario)
-					.domicilio(domicilioViamonte).build();
+					.domicilio(domicilioRosario).build();
 
 			DetallePedido detallePedido1 = DetallePedido.builder().articulo(pizzaMuzarella).cantidad(1).subTotal(200.0).build();
-			DetallePedido detallePedido2 = DetallePedido.builder().articulo(cocaCola).cantidad(2).subTotal(100.0).build();
+			DetallePedido detallePedido2 = DetallePedido.builder().articulo(carneMolida).cantidad(2).subTotal(100.0).build();
 
 			pedido.getDetallePedidos().add(detallePedido1);
 			pedido.getDetallePedidos().add(detallePedido2);
@@ -259,9 +256,9 @@ public class BuenSaborSpringApplication {
 			cliente.getPedidos().add(pedido);
 			clienteRepository.save(cliente);
 
-			logger.info("----------------Sucursal Chacras ---------------------");
+			logger.info("----------------Sucursal Rosario ---------------------");
 			logger.info("{}",sucursalRosario);
-			logger.info("----------------Sucursal Godoy Cruz ---------------------");
+			logger.info("----------------Sucursal Dorrego ---------------------");
 			logger.info("{}",sucursalDorrego);
 			logger.info("----------------Pedido ---------------------");
 			logger.info("{}",pedido);
