@@ -14,6 +14,7 @@ import java.util.Set;
 @ToString
 @Setter
 @SuperBuilder
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Articulo extends Base {
 
     protected String denominacion;

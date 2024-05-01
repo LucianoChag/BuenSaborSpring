@@ -38,8 +38,9 @@ public class Pedido extends Base{
     private Factura factura;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pedido_id")
+    @OneToMany(cascade = CascadeType.ALL,
+                fetch = FetchType.LAZY,
+                mappedBy = "pedido")
     @Builder.Default
     private Set<DetallePedido> detallePedidos = new HashSet<>();
 }

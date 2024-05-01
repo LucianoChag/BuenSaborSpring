@@ -19,4 +19,8 @@ public class DetallePedido extends Base{
     @ManyToOne
     private Articulo articulo;
 
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
 }

@@ -1,8 +1,10 @@
 package buenSaborSpring.demo.domain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @NoArgsConstructor
@@ -18,5 +20,11 @@ public class Localidad extends Base{
 
     @ManyToOne
     private Provincia provincia;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "localidad")
+    @Builder.Default
+    private Set<Domicilio> domicilios = new HashSet<>();
 
 }

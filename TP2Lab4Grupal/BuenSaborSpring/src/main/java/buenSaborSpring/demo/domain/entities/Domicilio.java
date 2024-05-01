@@ -3,6 +3,8 @@ package buenSaborSpring.demo.domain.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
 
 
 @NoArgsConstructor
@@ -22,5 +24,6 @@ public class Domicilio extends Base{
 
     @ManyToOne
     private Localidad localidad;
+
 
 }
