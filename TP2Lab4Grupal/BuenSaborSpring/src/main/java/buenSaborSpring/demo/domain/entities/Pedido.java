@@ -37,6 +37,9 @@ public class Pedido extends Base{
     @OneToOne
     private Factura factura;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
     @OneToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY,

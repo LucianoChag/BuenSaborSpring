@@ -25,8 +25,9 @@ public class Cliente extends Base{
     @OneToOne
     private Imagen imagen;
 
-    @OneToMany
-    @JoinColumn(name = "cliente_id")
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "cliente")
     @Builder.Default
     private Set<Pedido> pedidos = new HashSet<>();
 

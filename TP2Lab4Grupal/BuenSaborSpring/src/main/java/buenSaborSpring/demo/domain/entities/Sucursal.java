@@ -37,4 +37,8 @@ public class Sucursal extends Base{
 
     @Builder.Default
     private Set<Promocion> promociones = new HashSet<>();
+
+    /*@ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;*/
 }
